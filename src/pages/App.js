@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import { onAuthStateChanged, getAuth } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Home } from './Home';
 import { SignIn } from './SignIn';
 
@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
-    );
+    )
   } else {
       return (
         <BrowserRouter>

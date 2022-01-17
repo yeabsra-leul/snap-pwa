@@ -8,7 +8,7 @@ export const Home = () => {
             <div className="App">
                 <header className="App-header">
                     <h1>*Home page*</h1>
-                    <h2>Welcome to Snap, {localStorage.getItem("name")}!</h2>
+                    <h2>Welcome to Snap, {localStorage.getItem("name").split(' ')[0]}!</h2>
                     <button class="google-btn sign-out-btn" onClick={signOutWithGoogle}>
                         Sign Out
                     </button>
@@ -17,5 +17,3 @@ export const Home = () => {
         </>
     )
 }
-
-// export default Home

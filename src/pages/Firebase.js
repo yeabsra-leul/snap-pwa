@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithRedirect, signInWithPopup, signOut } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithRedirect, signInWithPopup, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDmeTpukDdm8xhLBS-dWcAFp4IF4MuXAAo",
@@ -18,13 +18,10 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)    // TODO: DECIDE BETWEEN SIGN IN WITH POPUP OR REDIRECT
     .then((result) => {
-      const name = result.user.displayName.split(' ')[0]
-      const email = result.user.email
-      const profilePic = result.user.photoURL   // NOT SURE IF WE NEED THE PICTURE..
-
-      localStorage.setItem("name", name)   // TODO: CURRENTLY STORING USER DATA IN LOCAL STORAGE, MOVE TO DATABASE
-      localStorage.setItem("email", email)
-      localStorage.setItem("profilePic", profilePic)
+      // TODO: CURRENTLY STORING USER DATA IN LOCAL STORAGE, MOVE TO DATABASE
+      localStorage.setItem("name", result.user.displayName)
+      localStorage.setItem("email", result.user.email)
+      localStorage.setItem("profilePic", result.user.photoURL)  // NOT SURE IF WE NEED THE PICTURE..
     })
     .catch((error) => {
       console.log(error)
@@ -33,9 +30,8 @@ export const signInWithGoogle = () => {
 
 export const signOutWithGoogle = () => {
   signOut(auth)
-    .then(() => { }
-    )
+    .then(() => {})
     .catch((error) => {
       console.log(error)
-  })
+    })
 }
