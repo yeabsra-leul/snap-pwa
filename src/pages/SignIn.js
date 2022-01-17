@@ -1,8 +1,8 @@
-import React from 'react';
-import '../styles/App.css';
+import { React } from 'react';
 import { signInWithGoogle } from "./Firebase";
+import '../styles/App.css';
 
-const SignIn = () => {
+export const SignIn = () => {
     return (
         <>
             <div className="App">
@@ -10,11 +10,11 @@ const SignIn = () => {
                     <h1>Welcome to Snap!</h1>
                     <button class="google-btn sign-in-btn" onClick={signInWithGoogle}>
                         Sign in with Google
-                   </button>
+                    </button>
                 </header>
             </div>
         </>
     )
 }
 
-export default SignIn
+// export default SignIn

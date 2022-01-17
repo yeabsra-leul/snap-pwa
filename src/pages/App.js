@@ -1,21 +1,13 @@
-import React, {useState} from 'react';
+import { React, useState } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-// import '../styles/App.css';
-// import { signInWithGoogle } from "./Firebase";
-import SignIn from './SignIn'
-import Home from './Home'
-import {onAuthStateChanged, getAuth} from 'firebase/auth'
+import { onAuthStateChanged, getAuth } from 'firebase/auth'
+import { Home } from './Home';
+import { SignIn } from './SignIn';
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(true)
   const auth = getAuth()
-  onAuthStateChanged(auth, (user) => {
-    // if(user) {
-    //   return setIsUserSignedIn(true);
-    // }
-    // setIsUserSignedIn(false);
-    return setIsUserSignedIn(user)
-  })
+  onAuthStateChanged(auth, (user) => { setIsUserSignedIn(user) })
 
   if (isUserSignedIn) {
     return (
@@ -34,7 +26,6 @@ function App() {
       </BrowserRouter>
       )
   }
-
 }
 
 export default App;

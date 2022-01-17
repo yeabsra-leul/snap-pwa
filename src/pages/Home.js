@@ -1,8 +1,8 @@
-import React from 'react';
-import '../styles/App.css';
+import { React } from 'react';
 import { signOutWithGoogle } from "./Firebase";
+import '../styles/App.css';
 
-const Home = () => {
+export const Home = () => {
     return (
         <>
             <div className="App">
@@ -18,4 +18,4 @@ const Home = () => {
     )
 }
 
-export default Home
+// export default Home
