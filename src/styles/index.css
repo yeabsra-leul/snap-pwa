@@ -5,6 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+
+  --color-primary: #212525;
+  --color-onPrimay: #E8EDDF;
+
+  --color-onSurface: #fff;
+  --color-cardYellow: rgb(245, 203, 92);;
 }
 
 code {

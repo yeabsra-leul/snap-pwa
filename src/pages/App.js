@@ -3,9 +3,11 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Home } from './Home';
 import { SignIn } from './SignIn';
+import Schedules from './Schedules';
 
 function App() {
-  const [isUserSignedIn, setIsUserSignedIn] = useState(true)
+  // 
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false)
   const auth = getAuth()
   onAuthStateChanged(auth, (user) => { setIsUserSignedIn(user) })
 
@@ -13,7 +15,11 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
+          {/* <Route path="/schedules" element={<Schedules />} /> */}
+
           <Route path="/" element={<Home />} />
+
+
         </Routes>
       </BrowserRouter>
     )
@@ -21,7 +27,10 @@ function App() {
       return (
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignIn />} />
+            <Route exact path="/" element={<SignIn />} />   
+            <Route path="/">
+              <Route path="schedules" element={<Schedules/>} />
+            </Route>         
           </Routes>
       </BrowserRouter>
       )
