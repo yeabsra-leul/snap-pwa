@@ -17,14 +17,14 @@
   
   /* Position and sizing of clickable cross button */
   .bm-cross-button {
-    height: 24px;
-    width: 24px;
-    display: none;
+    position: absolute;
+    top: 16px;
+    left: 16px;
   }
   
   /* Color/shape of close button cross */
   .bm-cross {
-    background: #bdc3c7;
+    padding-top: 8px;
   }
   
   /*
@@ -40,7 +40,7 @@
   .bm-menu {
     /* background: #E8EDDF; */
     background: var(--color-onPrimay);
-    padding: 2em 1.5em 0;
+    padding: 4em 18px 0;
     font-size: 1.15em;
   }
   
