@@ -6,11 +6,7 @@ import ImageButton from "./Buttons"
 export default function Nav() {
     return (
         <div className="nav flex jc-sb">
-
-            <ImageButton
-                image={humburger}
-                alt="Go to navigation"
-            />
+            <div></div>
 
             <ImageButton
                 image={search}

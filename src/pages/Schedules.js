@@ -10,13 +10,14 @@ import location from "../images/location.svg";
 import "../styles/schedules.css"
 import ImageButton from "../components/Buttons";
 import TaskList from "../components/TaskList";
+import Sidebar from '../components/Sidebar';
 
 function Schedules() {
     
     return (
         <>
             <header>
-
+                <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
                 <div className="container">
                     <Nav />
                     <UtilityNav />
