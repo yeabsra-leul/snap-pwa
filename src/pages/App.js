@@ -6,7 +6,6 @@ import { SignIn } from './SignIn';
 import Schedules from './Schedules';
 
 function App() {
-  // 
   const [isUserSignedIn, setIsUserSignedIn] = useState(false)
   const auth = getAuth()
   onAuthStateChanged(auth, (user) => { setIsUserSignedIn(user) })
@@ -16,10 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/schedules" element={<Schedules />} />
-
           <Route exact path="/" element={<Home />} />
-
-
         </Routes>
       </BrowserRouter>
     )

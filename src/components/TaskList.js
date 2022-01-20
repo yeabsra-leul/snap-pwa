@@ -1,9 +1,9 @@
+import classNames from "classnames"
 import ImageButton from "./Buttons"
 import options from "../images/options.svg"
 import location from "../images/location.svg"
-import classNames from "classnames"
-export default function TaskList({}){
 
+export default function TaskList({}){
     return(
         <>
             <div className="tasks-header">

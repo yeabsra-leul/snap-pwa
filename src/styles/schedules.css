@@ -10,10 +10,6 @@ header {
     margin-bottom: 1.25rem;
 }
 
-footer{
-
-}
-
 li {
     list-style-type: none;
 }
@@ -88,7 +84,7 @@ li {
 
 .cur-date-desc{
     font-size: 0.944rem;
-    color: #4e4e4e; 
+    color: #4e4e4e;
 }
 
 .container{
@@ -97,10 +93,24 @@ li {
     padding: 1rem 1rem 0.5rem 1rem;
 }
 
+/* MOVED TO BUTTONS.CSS */
+
 /* .btn{
     border-width: 0;
     display: block;
     background-color: transparent;
+} */
+
+/* .btn__ctx{
+    position: absolute;
+
+    top: 10px;
+    right: 6px;
+}
+
+.btn__img{
+    display: inline-flex;
+    align-items: center;
 } */
 
 .bold{
@@ -213,18 +223,6 @@ li {
     font-size: 0.899rem;
 }
 
-/* .btn__ctx{
-    position: absolute;
-
-    top: 10px;
-    right: 6px;
-}
-
-.btn__img{
-    display: inline-flex;
-    align-items: center;
-} */
-
 .time{
     font-size: 0.822rem;
     display: block;
@@ -247,4 +245,3 @@ li {
     font-weight: bold;
     padding: 0.5em 0.7em;
 }
-

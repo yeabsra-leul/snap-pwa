@@ -1,4 +1,3 @@
-import humburger from "../images/humburger.svg"
 import search from "../images/search.svg"
 import add from "../images/add.svg"
 import ImageButton from "./Buttons"
@@ -31,7 +30,7 @@ export function UtilityNav() {
                     </span>
 
                     <span className="cur-date-desc">
-                        jan 2020
+                        Jan 2020
                     </span>
                 </section>
 
@@ -39,11 +38,7 @@ export function UtilityNav() {
 
             <section className="wrapper flex">
 
-                <ImageButton
-                    image={add}
-                    cls={"add-task"}
-                    alt={"add task"}
-                >
+                <ImageButton image={add} cls={"add-task"} alt={"add task"} >
                     ADD
                 </ImageButton>
                

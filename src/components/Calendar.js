@@ -1,11 +1,11 @@
 import classNames from "classnames";
-import {useState} from "react";
+import { useState } from "react";
 
 function Calendar(){
-    const days = ["Sunday", "monday", "tuesday", "wednesday", "thursday", "firday", "saturday"];
+    const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
 
     const date = new Date()
-    const [selected, setSelected] = useState(date.getDate());
+    const [selected, setSelected] = useState(date.getDate())
 
     const dayWidgets = days.map( (day, i) => {
         let dayNo = date.getDate() + ( i - date.getDay())
