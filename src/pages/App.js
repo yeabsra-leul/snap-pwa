@@ -15,9 +15,9 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/schedules" element={<Schedules />} /> */}
+          <Route path="/schedules" element={<Schedules />} />
 
-          <Route path="/" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
 
 
         </Routes>
@@ -28,9 +28,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<SignIn />} />   
-            <Route path="/">
+            {/* <Route path="/">
               <Route path="schedules" element={<Schedules/>} />
-            </Route>         
+            </Route>*/}
           </Routes>
       </BrowserRouter>
       )
