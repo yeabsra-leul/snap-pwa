@@ -1,5 +1,5 @@
 import ImageButton from "./Buttons"
-import settings from "../images/settings.svg"
+import options from "../images/options.svg"
 import location from "../images/location.svg"
 import classNames from "classnames"
 export default function TaskList({}){
@@ -46,7 +46,7 @@ function Task({task}){
                 </section>
 
                 <ImageButton
-                    image={settings}
+                    image={options}
                     cls="btn__ctx"
                     alt="context"
                 />

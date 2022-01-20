@@ -1,4 +1,6 @@
-export default function ImageButton({image, cls, alt, children}){
+import '../styles/buttons.css';
+
+export default function ImageButton({image, cls, alt, children}) {
     const clsName = "btn btn__img " + cls
 
     return (

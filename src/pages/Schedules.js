@@ -3,7 +3,7 @@
 import Calendar from "../components/Calendar";
 import Nav, {UtilityNav} from "../components/Nav"; 
 
-import settings from "../images/settings.svg";
+import options from "../images/options.svg";
 import location from "../images/location.svg";
 
 

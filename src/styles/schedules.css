@@ -97,13 +97,11 @@ li {
     padding: 1rem 1rem 0.5rem 1rem;
 }
 
-.btn{
+/* .btn{
     border-width: 0;
     display: block;
     background-color: transparent;
-}
-
-
+} */
 
 .bold{
     font-weight: bold;
@@ -215,7 +213,7 @@ li {
     font-size: 0.899rem;
 }
 
-.btn__ctx{
+/* .btn__ctx{
     position: absolute;
 
     top: 10px;
@@ -225,7 +223,7 @@ li {
 .btn__img{
     display: inline-flex;
     align-items: center;
-}
+} */
 
 .time{
     font-size: 0.822rem;

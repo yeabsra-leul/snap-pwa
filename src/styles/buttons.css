@@ -1,0 +1,22 @@
+.btn{
+    border-width: 0;
+    display: block;
+    background-color: transparent;
+}
+
+.btn__ctx{
+    position: absolute;
+
+    top: 10px;
+    right: 6px;
+}
+
+.btn__img{
+    display: inline-flex;
+    align-items: center;
+}
+
+.hamburger-item{
+    gap: 15px;
+    font-size: .8em;
+}
