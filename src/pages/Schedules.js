@@ -1,41 +1,77 @@
-// import { useState } from "react";
-// import classNames from "classnames";
 import Calendar from "../components/Calendar";
-import Nav, {UtilityNav} from "../components/Nav"; 
+import Nav, { UtilityNav } from "../components/Nav";
 
-import options from "../images/options.svg";
-import location from "../images/location.svg";
-
-
-import "../styles/schedules.css"
-import ImageButton from "../components/Buttons";
+import "../styles/schedules.css";
 import TaskList from "../components/TaskList";
-import Sidebar from '../components/Sidebar';
+import Sidebar from "../components/Sidebar";
+import { useEffect, useState } from "react";
+
+import { taskMan } from "../scheduler/TaskManager";
+import { scheduler } from "../scheduler/Scheduler";
+
+
 
 function Schedules() {
+  const [selected, setSelected] = useState((new Date()).getDate());
+
+  useEffect(() => {
+    if (scheduler.tasksAvailable()) {
+      taskMan.initDays();
+      taskMan.allotRoutines();
+      scheduler.createSchedule();
+    }
     
-    return (
-        <>
-            <header>
-                <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-                <div className="container">
-                    <Nav />
-                    <UtilityNav />
-                
-                    <Calendar />
-                </div>
-                
-            </header>
+  }, []);
 
-            <main className="container">
-                <TaskList />
-            </main>
+  return (
+    <>
+      <header>
+        <Sidebar
+          pageWrapId={"page-wrap"}
+          outerContainerId={"outer-container"}
+        />
+        <div className="container">
+          <Nav />
+          <UtilityNav />
 
-            <footer>
+          <Calendar selected={selected} setSelected={setSelected} />
+        </div>
+      </header>
 
-            </footer>
-        </>
-    );
+      <main className="container">
+        <TaskList selected={selected} />
+      </main>
+
+      <footer></footer>
+    </>
+  );
 }
 
 export default Schedules;
+
+// let tasks = [
+
+//     new Task(
+//         "Laundary",
+//         "socks, underware, pants, sweater, ",
+//         60,
+//         new Date(),
+//         1
+//     ),
+
+//     new Task(
+//         "Laundary",
+//         "socks, underware, pants, sweater, ",
+//         60,
+//         new Date(new Date().setDate(30)),
+//         1
+//     ),
+
+// ];
+
+// for (let task of tasks) {
+//     taskMan.tasks.enqueue(task);
+// }
+
+// console.log(taskMan.tasks)
+// taskMan.saveState();

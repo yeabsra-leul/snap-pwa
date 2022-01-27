@@ -1,0 +1,59 @@
+import { taskMan } from "./TaskManager";
+import { Interval } from "./Routine";
+
+class Schedule{
+    constructor(task, interval, date){
+        this.task = task
+        this.time = interval
+        this.date = date
+    }
+}
+
+class Scheduler{
+
+    constructor(){
+        this.schedules = []
+    }
+
+    createSchedule() {
+        while(!taskMan.tasks.isEmpty()){
+            let task = taskMan.tasks.dequeue();
+            this.assignTask(task);
+        }
+    }
+
+    assignTask(task){
+        for(let day of taskMan.days){
+            
+            
+            for(let interval of day.intervals) {
+                if(interval.length >= task.duration){
+                    // console.log("Got a space")
+                    // break;
+                    let time = new Interval(interval.start, interval.start + task.duration)
+                    
+                    day.removeInterval(time)
+
+                    this.schedules.push(new Schedule(task, time, day.date))
+
+                    return 
+
+                    // return new Schedule(task, interval)
+                }
+            };
+        }
+    }
+
+    tasksAvailable(){
+        let tasks = taskMan.tasks
+
+        return !tasks.isEmpty()
+    }
+
+}
+
+export const scheduler = new Scheduler()
+
+// scheduler.createSchedule()
+
+// console.log(scheduler.schedules);
