@@ -18,10 +18,14 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)    // TODO: DECIDE BETWEEN SIGN IN WITH POPUP OR REDIRECT
     .then((result) => {
-      // TODO: CURRENTLY STORING USER DATA IN LOCAL STORAGE, MOVE TO DATABASE
-      localStorage.setItem("name", result.user.displayName)
-      localStorage.setItem("email", result.user.email)
-      localStorage.setItem("profilePic", result.user.photoURL)  // NOT SURE IF WE NEED THE PICTURE..
+
+      let userInfo = {
+        name: result.user.displayName, 
+        email: result.user.email, 
+        profilePic: result.user.photoURL
+      }
+      localStorage.setItem("userInfo", userInfo)
+      
     })
     .catch((error) => {
       console.log(error)

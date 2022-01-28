@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Home } from './Home';
 import { SignIn } from './SignIn';
 import Schedules from './Schedules';
+import Settings from './Settings';
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false)
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/schedules" element={<Schedules />} />
+          <Route path="/settings" element={<Settings />} />
           <Route exact path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>

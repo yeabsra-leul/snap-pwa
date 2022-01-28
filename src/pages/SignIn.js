@@ -8,7 +8,7 @@ export const SignIn = () => {
             <div className="App">
                 <header className="App-header">
                     <h1>Welcome to Snap!</h1>
-                    <button class="google-btn sign-in-btn" onClick={signInWithGoogle}>
+                    <button className="google-btn sign-in-btn" onClick={signInWithGoogle}>
                         Sign in with Google
                     </button>
                 </header>

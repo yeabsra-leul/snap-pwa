@@ -12,9 +12,9 @@ import groups from "../images/groups.svg";
 export default props => {   // TODO: Change URIs, Prevent overlay scrolling behind sidebar
   return (
     <Menu width={'275px'} customBurgerIcon={<img src={humburger}/>} customCrossIcon={<img src={exit}/>} disableAutoFocus >
-      <Link to="/">
+      <Link to="/Schedules">
         <ImageButton image={groups} cls={"hamburger-item"} alt={"Groups"}>
-          Groups
+          Home
         </ImageButton>
       </Link>
 
@@ -24,7 +24,7 @@ export default props => {   // TODO: Change URIs, Prevent overlay scrolling behi
         </ImageButton>
       </Link>
 
-      <Link to="/">
+      <Link to="/Settings">
         <ImageButton image={settings} cls={"hamburger-item"} alt={"Settings"}>
           Settings
         </ImageButton>
