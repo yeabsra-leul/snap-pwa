@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { signOutWithGoogle } from "./Firebase";
+import { signOutWithGoogle } from "../components/Firebase";
 import '../styles/App.css';
 import { Link } from 'react-router-dom';
 
