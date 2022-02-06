@@ -1,0 +1,39 @@
+.settings-title {
+    margin-bottom: .7em;
+}
+
+.header {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.setting-line-flex {
+    display: flex;
+    justify-content: space-between;
+    margin: .8em .3em;
+}
+
+.setting-line {
+    margin: .8em .3em;
+}
+
+.setting-part {
+    margin-bottom: 2.5em;
+}
+
+.name-input {
+    padding: 5px;
+    margin-left: 1em;
+    width: 60vw;
+    height: 1.5em;
+}
+
+.time-input {
+    padding: 5px;
+    margin: 0 .5em;
+    font-family: system-ui;
+}
+
+.timeset-name {
+    margin-right: .5em;
+}

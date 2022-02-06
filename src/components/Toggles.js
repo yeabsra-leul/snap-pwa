@@ -1,26 +1,7 @@
 import React from 'react';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
-
-const custom_css = `
-    .rc-checkbox:hover .rc-checkbox-inner,
-    .rc-checkbox-input:focus + .rc-checkbox-inner {
-        border-color: #000;
-        background-color: #fff;
-    }
-    .rc-checkbox-checked .rc-checkbox-inner {
-        background-color: #fff;
-        border-color: #000;
-    }
-    .rc-checkbox-inner{
-        border-color: #000;
-        background-color: #fff;
-    }
-    .rc-checkbox-inner:after {
-        border-color: #000;
-        background-color: #fff;
-    }
-`
+import "../styles/toggles.css";
 
 function onReminderChange(e) {
     let settings = JSON.parse(window.localStorage.getItem('settings'))
@@ -30,21 +11,22 @@ function onReminderChange(e) {
 
 function onSoundChange(e) {
     let settings = JSON.parse(window.localStorage.getItem('settings'))
-    settings.sound = e.target.checked    
+    settings.sounds = e.target.checked    
     localStorage.setItem('settings', JSON.stringify(settings))
 }
 
 export function ReminderToggle() {
     return (
         <>
-            <style>{custom_css}</style>
             <p>
-                <label>
+                <label className="switch">
                     <Checkbox
-                    defaultChecked
+                    defaultChecked={JSON.parse(window.localStorage.getItem('settings')).reminders}
                     onChange={onReminderChange}
                     disabled={false}
+                    className='input'
                     />
+                    <span className="slider" />
                 </label>
             </p>
         </>
@@ -54,14 +36,15 @@ export function ReminderToggle() {
 export function SoundToggle() {
     return (
         <>
-            <style>{custom_css}</style>
             <p>
-                <label>
+                <label className="switch">
                     <Checkbox
-                    defaultChecked
+                    defaultChecked={JSON.parse(window.localStorage.getItem('settings')).sounds}
                     onChange={onSoundChange}
                     disabled={false}
+                    className='input'
                     />
+                    <span className="slider" />
                 </label>
             </p>
         </>
