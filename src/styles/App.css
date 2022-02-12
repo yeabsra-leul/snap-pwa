@@ -1,4 +1,10 @@
+:root{
+  box-sizing: border-box;
+}
 
+* {
+  box-sizing: inherit;
+}
 .App {
   text-align: center;
 }

@@ -7,18 +7,20 @@ import { routineManager } from "./RoutineManager";
 const DAYINMILL = 1000 * 3600 * 24;
 
 export class Task {
-	constructor(name, desc, duration, deadline, priority) {
+	constructor(name, desc, duration, deadline, priority, color) {
 		this.name = name;
 		this.desc = desc;
 		this.duration = duration;
 		this.deadline = deadline;
 		this.priority = priority;
+		this.color = color;
 	}
 }
 
 class TaskManager {
 
 	constructor() {
+		this.taskList = repository.getTasks();
 		this.tasks = new TaskQueue(repository.getTasks());
 
 		console.log(this.tasks)
@@ -64,13 +66,15 @@ class TaskManager {
     }
 
     removeTask(task){
-        this.tasks.remove(task)
+        this.tasksList.remove(task)
     }
 
+	addTask(task){
+		this.taskList.push(task);
+	}
+
 	saveState(){
-		console.log("Going to save " )
-		console.log( this.tasks)
-		this.tasks.save()
+		repository.setTasks(this.taskList);
 	}
 
 }

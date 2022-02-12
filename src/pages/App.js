@@ -5,6 +5,7 @@ import { SignIn } from './SignIn';
 import Schedules from './Schedules';
 import Settings from './Settings';
 import Profile from './Profile';
+import TaskPage from './Task';
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false)
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/settings" element={<Settings />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/task" element={<TaskPage/>} />
           <Route exact path="/" element={<Schedules />} />
         </Routes>
       </BrowserRouter>

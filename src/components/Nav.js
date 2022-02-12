@@ -1,17 +1,33 @@
 import search from "../images/search.svg"
-import add from "../images/add.svg"
+import add from "../images/add.svg";
+import humburger from "../images/humburger.svg";
 import ImageButton from "./Buttons"
+import { Link } from "react-router-dom";
 
-export default function Nav() {
+export default function Nav({title, utilities}) {
     return (
         <div className="nav flex jc-sb">
-            <div></div>
 
-            <ImageButton
-                image={search}
-                alt={"Seach for a task"}
-                cls={"search-icon"}
-            />
+            <div className="left-menu">
+                <ImageButton
+                    image={humburger}
+                    alt={"menu"}
+                    cls={"search-icon"}
+                />
+
+                <span>
+                    {title}
+                </span>
+            </div>
+
+            {
+                utilities && 
+                    <ImageButton
+                        image={search}
+                        alt={"Seach for a task"}
+                        cls={"search-icon"}
+                    />
+            }
 
         </div>
     )
@@ -39,9 +55,10 @@ export function UtilityNav() {
 
             <section className="wrapper flex">
 
-                <ImageButton image={add} cls={"add-task"} alt={"add task"} >
-                    ADD
-                </ImageButton>
+            <Link className="btn btn__img add-task" to="/task">
+                <img src={add} alt="Add Task" /> 
+                ADD
+            </Link>
                
             </section>
 
