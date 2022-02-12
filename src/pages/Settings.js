@@ -1,12 +1,7 @@
 import Sidebar from '../components/Sidebar';
-import { Settings_Preferences } from '../components/Settings_Preferences';
-import { Settings_Routines } from '../components/Settings_Routines';
+import { Routines, Preferences } from '../components/SettingPersistence';
 
-const custom_css = `
-    .container {
-        padding: 28px;
-    }
-`
+const custom_css = ` .container { padding: 28px; } `
 
 function Settings() {
     if ((JSON.parse(localStorage.getItem("settings")))===null) {
@@ -27,8 +22,8 @@ function Settings() {
             </header>
 
             <main className="container">
-                <Settings_Preferences />
-                <Settings_Routines />
+                <Preferences />
+                <Routines />
             </main>
         </>
     )

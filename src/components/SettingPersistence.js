@@ -1,6 +1,38 @@
+import { ReminderToggle, SoundToggle } from './Toggles';
 import "../styles/settings.css";
 
-export function Settings_Routines () {
+export function Preferences () {
+    return (
+        <div className='setting-part'>
+            <div className='settings-title'>
+            <div className='settings-title-icon'></div>
+                <label className='header'>Settings</label>
+            </div>
+
+            <div className='setting-line-flex'>
+                <div className='setting-labels'>
+                    <div className='setting-icon reminder-icon'></div>
+                    <label className='setting-name reminder-name'>Reminders</label>
+                </div>
+                <div className='setting-toggle reminder-toggle'>
+                    <ReminderToggle />
+                </div>
+            </div>
+
+            <div className='setting-line-flex'>
+                <div className='setting-labels'>
+                    <div className='setting-icon sound-icon'></div>
+                    <label className='setting-name sound-name'>Sounds</label>
+                </div>
+                <div className='setting-toggle sound-toggle'>
+                    <SoundToggle />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export function Routines () {
     return (
         <form id="routines-form">
             <div className='settings-title'>
@@ -22,8 +54,8 @@ export function Settings_Routines () {
                 <label className='setting-name taskend-name timeset-name'>End Time</label>
                 <input type='time' className='time-input' id="end-time"></input>
             </div>
-            <div>
-                <button type="button" className='add-task-button' onClick={saveRoutine}>Add Routine</button>
+            <div className='button-container'>
+                <button type="button" className='btn btn__img add-routine' onClick={saveRoutine}>Add Routine</button>
             </div>
         </form>
     )
@@ -37,6 +69,7 @@ function saveRoutine() {
     if (name=="" || startTimeRaw.length==1 || endTimeRaw.length==1) {
         document.getElementById("routines-form").reset();
         // TODO: Tell user that input is invalid
+        console.log("empty input")
         return;
     }
 

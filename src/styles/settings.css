@@ -37,3 +37,14 @@
 .timeset-name {
     margin-right: .5em;
 }
+
+.button-container {
+    display: flex;
+    justify-content: end;
+}
+
+.add-routine{
+    background: rgba(232, 237, 223);;
+    border-radius: 6px;
+    padding: 0.6em 0.9em;
+}
