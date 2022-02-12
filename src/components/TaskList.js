@@ -1,20 +1,29 @@
-import classNames from "classnames";
-import ImageButton from "./Buttons";
-import options from "../images/options.svg";
-import location from "../images/location.svg";
-
 import { scheduler } from "../scheduler/Scheduler";
 import { useEffect, useState } from "react";
+
+import { taskMan } from "../scheduler/TaskManager";
+import Task from "./Task";
+import { routineManager } from "../scheduler/RoutineManager";
 
 export default function TaskList({ selected }) {
   const [schedules, setSchedules] = useState(scheduler.schedules);
 
   useEffect(() => {
+    if (scheduler.tasksAvailable()) {
+      taskMan.initDays();
+      taskMan.allotRoutines();
+      scheduler.createSchedule();
+    }
+  }, []);
+
+  useEffect(() => {
+
     setSchedules(
-      scheduler.schedules.filter((schedule) => {
-        return schedule.date.getDate() == selected;
-      })
+      scheduler.schedules.filter((schedule) => schedule.date.getDate() == selected)
+
+      // schedule.task.title.contains(searchTerm)
     );
+
   }, [selected]);
 
   return (
@@ -26,38 +35,9 @@ export default function TaskList({ selected }) {
 
       <div className="tasks">
         {schedules.map((schedule, index) => (
-          <Task key={index} task={schedule.task} />
+          <Task key={index} task={schedule.task}/>
         ))}
       </div>
     </>
-  );
-}
-
-function Task({ task }) {
-  const cls = classNames({
-    task: true,
-    yellow: task.color == "yellow",
-  });
-
-  return (
-    <div className={cls}>
-      <div className="tasks__time-col">
-        <span className="time start">{task.startTime}</span>
-        <span className="time end">{task.endTime}</span>
-      </div>
-
-      <div className="tasks__task-col task__card">
-        <h1 className="task__title">{task.name}</h1>
-        <article className="task__description">{task.desc}</article>
-
-        <section className="task__location">
-          <ImageButton image={location} alt="location">
-            {task.location}
-          </ImageButton>
-        </section>
-
-        <ImageButton image={options} cls="btn__ctx" alt="context" />
-      </div>
-    </div>
   );
 }

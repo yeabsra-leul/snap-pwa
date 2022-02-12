@@ -1,27 +1,14 @@
+import "../styles/schedules.css";
+
+import TaskList from "../components/TaskList";
+import Sidebar from "../components/Sidebar";
 import Calendar from "../components/Calendar";
 import Nav, { UtilityNav } from "../components/Nav";
 
-import "../styles/schedules.css";
-import TaskList from "../components/TaskList";
-import Sidebar from "../components/Sidebar";
-import { useEffect, useState } from "react";
-
-import { taskMan } from "../scheduler/TaskManager";
-import { scheduler } from "../scheduler/Scheduler";
-
-
+import { useState } from "react";
 
 function Schedules() {
   const [selected, setSelected] = useState((new Date()).getDate());
-
-  useEffect(() => {
-    if (scheduler.tasksAvailable()) {
-      taskMan.initDays();
-      taskMan.allotRoutines();
-      scheduler.createSchedule();
-    }
-    
-  }, []);
 
   return (
     <>
@@ -30,8 +17,10 @@ function Schedules() {
           pageWrapId={"page-wrap"}
           outerContainerId={"outer-container"}
         />
+
         <div className="container">
           <Nav />
+
           <UtilityNav />
 
           <Calendar selected={selected} setSelected={setSelected} />
@@ -42,7 +31,9 @@ function Schedules() {
         <TaskList selected={selected} />
       </main>
 
-      <footer></footer>
+      <footer>
+
+      </footer>
     </>
   );
 }

@@ -27,7 +27,11 @@ class Scheduler{
             
             
             for(let interval of day.intervals) {
-                if(interval.length >= task.duration){
+
+                let validation = interval.length >= task.duration && 
+                    task.deadline  > (new Date()) && task.deadline > day.date
+
+                if(validation){
                     // console.log("Got a space")
                     // break;
                     let time = new Interval(interval.start, interval.start + task.duration)
