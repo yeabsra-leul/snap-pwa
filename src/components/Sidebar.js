@@ -1,8 +1,10 @@
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
+
 import { Link } from 'react-router-dom';
 import ImageButton from "./Buttons";
 import '../styles/sidebar.css';
+
 import humburger from "../images/humburger.svg";
 import exit from "../images/exit.svg";
 import settings from "../images/settings.svg";
