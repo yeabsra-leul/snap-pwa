@@ -1,4 +1,5 @@
 import { ReminderToggle, SoundToggle } from './Toggles';
+import { v4 as uuidv4 } from 'uuid';
 import "../styles/settings.css";
 
 export function Preferences () {
@@ -75,17 +76,20 @@ function saveRoutine() {
 
     var startTime = parseInt(startTimeRaw[0])*60 + parseInt(startTimeRaw[1]);
     var endTime = parseInt(endTimeRaw[0])*60 + parseInt(endTimeRaw[1]);
+    var id = uuidv4();
 
     let routine = {
         name: name,
+        id: id,
         startTime: startTime,
         endTime: endTime
     }
 
     var settings = JSON.parse(localStorage.getItem("settings"));
     settings.routines.push(routine);
-    // settings.routines = [];
-    localStorage.setItem('settings', JSON.stringify(settings));
+    // settings.routines = [];      // clears the array
+    // localStorage.setItem('settings', JSON.stringify(settings));
+    console.log(JSON.stringify(settings))
 
     document.getElementById("routines-form").reset();
 }

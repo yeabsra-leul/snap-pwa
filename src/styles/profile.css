@@ -23,7 +23,8 @@
 }
 
 .profile-logout {
-    background: rgb(245 203 92);;
+    background: rgb(98, 182, 203, 0.3);
+    color: #1B4965;
     border-radius: 6px;
     padding: 0.6em 0.9em;
 }
