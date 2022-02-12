@@ -73,3 +73,22 @@
 .slider:before {
     border-radius: 50%;
 }
+
+.popup{
+    background: #fff;
+    border: 1px solid #c0c0c0;
+    position: absolute;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.844rem;
+    right: 2em;
+    margin-top: 3em;
+    z-index: 1000;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.popup img{
+    margin-right: 0.5em;
+}
+.popup li + li {
+    margin-top: 0.75rem;
+}

@@ -55,7 +55,7 @@ export function UtilityNav() {
 
             <section className="wrapper flex">
 
-            <Link className="btn btn__img add-task" to="/task">
+            <Link className="btn btn__img add-task" to="/task/new">
                 <img src={add} alt="Add Task" /> 
                 ADD
             </Link>

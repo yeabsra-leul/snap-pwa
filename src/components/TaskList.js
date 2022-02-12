@@ -2,12 +2,23 @@ import classNames from "classnames";
 import ImageButton from "./Buttons";
 import options from "../images/options.svg";
 import location from "../images/location.svg";
+import edit from "../images/edit.svg";
+import del from "../images/delete.svg";
+import done from "../images/done.svg";
+import pin from "../images/pin.svg"
 
 import { scheduler } from "../scheduler/Scheduler";
+import { taskMan } from "../scheduler/TaskManager";
 import { useEffect, useState } from "react";
+import ClickAwayListener from "react-click-away-listener";
+import { reload } from "./utils";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskList({ selected }) {
   const [schedules, setSchedules] = useState(scheduler.schedules);
+  const navigator = useNavigate();
+
+  useEffect(() => { reload() }, []);
 
   useEffect(() => {
     setSchedules(
@@ -16,6 +27,11 @@ export default function TaskList({ selected }) {
       })
     );
   }, [selected]);
+
+  let refresh = () => {
+    reload()
+    return setSchedules;
+  }
 
   return (
     <>
@@ -26,18 +42,32 @@ export default function TaskList({ selected }) {
 
       <div className="tasks">
         {schedules.map((schedule, index) => (
-          <Task key={index} task={schedule.task} />
+          <Task key={index} task={schedule.task} navigator={navigator} refresh={refresh} />
         ))}
       </div>
     </>
   );
 }
 
-function Task({ task }) {
+function Task({ task, refresh, navigator}) {
+
+  const [popupShown, setPopupShown] = useState(false);
+
   const cls = classNames({
     task: true,
     yellow: task.color == "yellow",
   });
+
+  function removeTask(){
+    taskMan.removeTask(task);
+    let setter = refresh();
+    setter(scheduler.schedules);
+  }
+
+  function redirect() {
+    console.log("edit page");
+    navigator(`/task/${task.id}`)
+  }
 
   return (
     <div className={cls}>
@@ -56,8 +86,40 @@ function Task({ task }) {
           </ImageButton>
         </section>
 
-        <ImageButton image={options} cls="btn__ctx" alt="context" />
+        <ImageButton image={options} cls="btn__ctx" alt="context" 
+            onClick={() => setPopupShown(!popupShown)} />
       </div>
+      {popupShown && 
+        <ClickAwayListener onClickAway={() => setPopupShown(!popupShown)}>
+          <div className={'popup'}>
+              
+              <li>
+                <ImageButton image={pin} onClick={() => {}}>
+                  Pin
+                </ImageButton>
+              </li>
+
+              <li>
+                <ImageButton image={edit} onClick={redirect}>
+                  Edit
+                </ImageButton>
+              </li>
+
+              <li>
+                <ImageButton image={del} onClick={removeTask}>
+                  Delete
+                </ImageButton>
+              </li>
+
+              <li>
+                <ImageButton image={done} onClick={() => task.completed = false}>
+                  Mark Done
+                </ImageButton>
+              </li>
+          </div>
+        </ClickAwayListener>
+      }
+      
     </div>
   );
 }

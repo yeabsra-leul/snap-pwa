@@ -6,22 +6,9 @@ import TaskList from "../components/TaskList";
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
 
-import { taskMan } from "../scheduler/TaskManager";
-import { scheduler } from "../scheduler/Scheduler";
-
-
 
 function Schedules() {
   const [selected, setSelected] = useState((new Date()).getDate());
-
-  useEffect(() => {
-    if (scheduler.tasksAvailable()) {
-      taskMan.initDays();
-      taskMan.allotRoutines();
-      scheduler.createSchedule();
-    }
-    
-  }, []);
 
   return (
     <>

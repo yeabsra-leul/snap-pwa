@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/settings" element={<Settings />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/task" element={<TaskPage/>} />
+          <Route path="/task/:id" element={<TaskPage/>} />
           <Route exact path="/" element={<Schedules />} />
         </Routes>
       </BrowserRouter>
