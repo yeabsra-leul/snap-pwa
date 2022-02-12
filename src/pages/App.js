@@ -1,9 +1,10 @@
 import { React, useState } from 'react';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { Home } from './Home';
 import { SignIn } from './SignIn';
 import Schedules from './Schedules';
+import Settings from './Settings';
+import Profile from './Profile';
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false)
@@ -14,8 +15,9 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/schedules" element={<Schedules />} />
-          <Route exact path="/" element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route exact path="/" element={<Schedules />} />
         </Routes>
       </BrowserRouter>
     )
@@ -23,10 +25,8 @@ function App() {
       return (
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<SignIn />} />   
-            {/* <Route path="/">
-              <Route path="schedules" element={<Schedules/>} />
-            </Route>*/}
+            <Route path="/profile" element={<Navigate replace to="/" />} />
+            <Route exact path="/" element={<SignIn />} />
           </Routes>
       </BrowserRouter>
       )

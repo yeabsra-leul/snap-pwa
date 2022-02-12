@@ -1,5 +1,10 @@
+                                            
+                                            
+                                            
+                                            // PAGE TO BE DELETED
+
 import { React } from 'react';
-import { signOutWithGoogle } from "./Firebase";
+import { signOutWithGoogle } from "../components/Firebase";
 import '../styles/App.css';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +19,7 @@ export const Home = ({children}) => {
                         Sign Out
                     </button>
 
-                    <Link to="/schedules">Invoices</Link>
+                    <Link to="/">Invoices</Link>
                 </header>
 
                 {children}
