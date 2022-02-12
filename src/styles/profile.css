@@ -1,0 +1,29 @@
+.profile-picture {
+    border-radius: 50%;
+    width: 40%;
+    height: 40%;
+}
+
+.profile-picture-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 5vh 0;
+}
+
+.name-container {
+    display: flex;
+    justify-content: space-around;
+    font-size: 120%;
+}
+
+.logout-button-container {
+    display: flex;
+    justify-content: end;
+    padding: 15px 15px 10px 15px;
+}
+
+.profile-logout {
+    background: rgb(245 203 92);;
+    border-radius: 6px;
+    padding: 0.6em 0.9em;
+}

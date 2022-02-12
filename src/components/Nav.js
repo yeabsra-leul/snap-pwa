@@ -10,6 +10,7 @@ export default function Nav() {
             <ImageButton
                 image={search}
                 alt={"Seach for a task"}
+                cls={"search-icon"}
             />
 
         </div>
