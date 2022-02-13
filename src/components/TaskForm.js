@@ -38,7 +38,7 @@ export function TaskForm({object, title}) {
     }
 
     return (
-        <form id="routines-form" className="mt-4">
+        <form id="routines-form" className="mt-1">
 
             <div className='input-line'>
                 <label className='input-name taskname-name'>Name</label>

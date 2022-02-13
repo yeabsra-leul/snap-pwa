@@ -1,10 +1,15 @@
 import search from "../images/search.svg"
 import add from "../images/add.svg";
+import exit from "../images/exit.svg";
 import humburger from "../images/humburger.svg";
 import ImageButton from "./Buttons"
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export default function Nav({title, utilities}) {
+export default function Nav({title, showInput, setShowInput, utilities, children}) {
+
+    const btnIcon = showInput ? search : exit;
+
     return (
         <div className="nav flex jc-sb">
 
@@ -20,13 +25,15 @@ export default function Nav({title, utilities}) {
                 </span>
             </div>
 
-            {
-                utilities && 
-                    <ImageButton
-                        image={search}
-                        alt={"Seach for a task"}
-                        cls={"search-icon"}
-                    />
+            {utilities && !showInput && children}
+
+            {utilities && 
+                <ImageButton
+                    image={btnIcon}
+                    onClick={() => setShowInput(!showInput)}
+                    alt={"Seach for a task"}
+                    cls={"search or close search"}
+                />
             }
 
         </div>

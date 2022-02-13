@@ -15,20 +15,23 @@ class Repository {
     }
 
 
-    getTasks() {
-        if (!localStorage.getItem("TASKS")){
+    getTasks(completed = false) {
+        const key = !completed ? "TASKS" : "COMPLETEDTASKS"
+        
+        if (!localStorage.getItem(key)){
             console.log("key not found")
             return [];
             
         }
 
-        let stored = localStorage.getItem("TASKS")
+        let stored = localStorage.getItem(key);
         return JSON.parse(stored)
         
     }
 
-    setTasks(tasks) {
-        localStorage.setItem("TASKS", JSON.stringify(tasks));
+    setTasks(tasks, completed = false) {
+        const key = !completed ? "TASKS" : "COMPLETEDTASKS"
+        localStorage.setItem(key, JSON.stringify(tasks));
     }
 }
 

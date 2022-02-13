@@ -28,6 +28,7 @@ class TaskManager {
 	}
 
 	init() {
+		this.completedTask = repository.getTasks(true);
 		this.taskList = repository.getTasks();
 		this.tasks = new TaskQueue(repository.getTasks());
 
@@ -75,7 +76,7 @@ class TaskManager {
     }
 
     removeTask(task){
-        this.taskList = this.taskList.filter(t => t.id != task.id );
+        this.taskList = this.taskList.filter(t => t.id !== task.id );
 		this.saveState();
     }
 
@@ -83,8 +84,13 @@ class TaskManager {
 		this.taskList.push(task);
 	}
 
+	addCompletedTask(task){
+		this.completedTask.push(task);
+	}
+
 	saveState(){
 		repository.setTasks(this.taskList);
+		repository.setTasks(this.completedTask, true)
 	}
 
 }

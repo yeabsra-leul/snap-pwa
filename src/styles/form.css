@@ -75,3 +75,21 @@ input[type='radio']:checked:after {
 #blue:after{
     background-color: #03a9f4;
 }
+
+.search-input{
+    border-width: 0 0 1px 0;
+    border-color: #c0c0c0;
+    background-color: transparent;
+}
+
+.red .task__card  {
+    background-color: #fd6434;;
+}
+
+.green .task__card {
+    background-color: #8bc34a;
+}
+
+.blue .task__card {
+    background-color: #03a9f4;
+}

@@ -27,10 +27,12 @@ class Scheduler{
             
             
             for(let interval of day.intervals) {
-                if(interval.length >= task.duration){
+                const length = Number(task.duration);
+
+                if(interval.length >= length){
                     // console.log("Got a space")
                     // break;
-                    let time = new Interval(interval.start, interval.start + task.duration)
+                    let time = new Interval(interval.start, interval.start + length)
                     
                     day.removeInterval(time)
 
