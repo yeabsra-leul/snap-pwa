@@ -4,7 +4,7 @@ import exit from "../images/exit.svg";
 import humburger from "../images/humburger.svg";
 import ImageButton from "./Buttons"
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { days } from "../scheduler/utils";
 
 export default function Nav({title, showInput, setShowInput, utilities, children}) {
 
@@ -41,20 +41,22 @@ export default function Nav({title, showInput, setShowInput, utilities, children
 }
 
 export function UtilityNav() {
+    const today = new Date()
+    
     return (
         <div className="flex jc-sb">
             <section className="date-shower iflex g-1">
                 <aside className="a-center h-3 ">
-                    24
+                    {today.getDate()}
                 </aside>
 
                 <section className="flex cur-date">
                     <span className="cur-date-desc">
-                        wed
+                        {days[today.getDay()]}
                     </span>
 
                     <span className="cur-date-desc">
-                        Jan 2020
+                        {today.getMonth} {today.getFullYear()}
                     </span>
                 </section>
 
