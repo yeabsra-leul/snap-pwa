@@ -12,6 +12,6 @@ export function reload() {
     scheduler.createSchedule();
 }
 
-export const days = ["sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+export const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export const months = ["Jan", "Feb", "Mar", "Apr", "jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+export const months = ["Jan", "Feb", "Mar", "Apr", "jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

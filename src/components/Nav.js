@@ -4,7 +4,7 @@ import exit from "../images/exit.svg";
 import humburger from "../images/humburger.svg";
 import ImageButton from "./Buttons"
 import { Link } from "react-router-dom";
-import { days } from "../scheduler/utils";
+import { days , months} from "./utils";
 
 export default function Nav({title, showInput, setShowInput, utilities, children}) {
 
@@ -56,7 +56,7 @@ export function UtilityNav() {
                     </span>
 
                     <span className="cur-date-desc">
-                        {today.getMonth} {today.getFullYear()}
+                        {months[today.getMonth()]} {today.getFullYear()}
                     </span>
                 </section>
 
