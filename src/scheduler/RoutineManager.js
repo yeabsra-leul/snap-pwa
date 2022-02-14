@@ -23,6 +23,7 @@ class RoutineManager {
 		this._routines.push(routine);
 	};
 
+
 	removeRoutine = function (routine) {
 		this._routines = this._routines.filter((item) => routine.id != item.id);
 	};
