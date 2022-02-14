@@ -16,7 +16,7 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = () => {
-  signInWithCredential(auth, provider)    // TODO: DECIDE BETWEEN SIGN IN WITH POPUP OR REDIRECT
+  signInWithPopup(auth, provider)    // TODO: DECIDE BETWEEN SIGN IN WITH POPUP OR REDIRECT
     .then((result) => {
 
       let userInfo = {
