@@ -40,7 +40,7 @@ export function CheckBoxInputs({ label, value, options, setter}) {
 			<InputWrapper>
                 <select value={value} multiple={true} onChange={(e) => handleSelect(e.target.value)}>
 
-				    {options.map((val, i) => <option value={val.toUpperCase()}>{val}</option>)}
+				    {options.map((val, i) => <option value={val.toUpperCase()} key={i}>{val}</option>)}
 
                 </select>
 			</InputWrapper>

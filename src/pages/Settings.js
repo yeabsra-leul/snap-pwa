@@ -39,7 +39,7 @@ function Settings() {
 
 			<main className="container">
 				<Preferences />
-                <label class="header">Add A Routine</label>
+                <label className="header">Add A Routine</label>
                 <RoutineForm/>
 				{/* <Routines /> */}
 			</main>
