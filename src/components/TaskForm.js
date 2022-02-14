@@ -1,143 +1,184 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Task, taskMan } from "../scheduler/TaskManager";
+import InputLine, { SelectInputs, SimpleColorRadio } from "./Inputs";
+import validate from "validate.js";
 
-export function TaskForm({object, title}) {
+function validateTaskForm(form) {
+	const notNull = {
+		allowEmpty: false,
+	};
 
-    const [taskName, setTaskName] = useState(object?.name || '');
-    const [taskDesc, setTaskDesc] = useState(object?.desc || '');
-    const [taskDeadline, setTaskDeadline] = useState(object?.deadline || '');
-    const [taskColor, setTaskColor] = useState(object?.color || '');
-    const [taskDuration, setTaskDuration] = useState(object?.duration || '');
-    const [taskPriority, setTaskPriority] = useState(object?.priority || 1);
-    const [taskLocation, setTaskLocation] = useState(object?.location || '');
+	let constraint = {
+		taskName: {
+			presence: notNull,
+		},
 
-    const handle = (e) => setTaskColor(e.target.value)
-    let navigator = useNavigate()
+		taskDesc: {
+			presence: notNull,
+			length: {
+				minimum: 8,
+				maximum: 200,
+			},
+		},
 
-    function submitform(){
+		taskDeadline: {
+			presence: notNull,
+		},
 
-        const task = new Task(taskName, 
-            taskDesc, 
-            taskDuration, 
-            taskDeadline, 
-            taskPriority, 
-            taskLocation,
-            taskColor);
+		taskLocation: {
+			presence: notNull,
+		},
 
-        console.log(task);
+		taskDuration: {
+			presence: notNull,
+			numericality: {
+				onlyInteger: true,
+				greaterThan: 5,
+			},
+		},
+	};
 
-        if(object){
-            // remove the object to be added later its modifed in the edit mode
-            taskMan.removeTask(object);
-        }
-            
-        taskMan.addTask(task);      
+	return validate(form, constraint);
+}
+export function TaskForm({ object, title }) {
+	const [inputErrs, setInputErrs] = useState({});
 
-        navigator('/', { replace: true })
-    }
+	const [taskName, setTaskName] = useState(object?.name || "");
+	const [taskDesc, setTaskDesc] = useState(object?.desc || "");
+	const [taskDeadline, setTaskDeadline] = useState(object?.deadline || "");
+	const [taskColor, setTaskColor] = useState(object?.color || "");
+	const [taskDuration, setTaskDuration] = useState(object?.duration || "");
+	const [taskPriority, setTaskPriority] = useState(object?.priority || 1);
+	const [taskLocation, setTaskLocation] = useState(object?.location || "");
 
-    return (
-        <form id="routines-form" className="mt-1">
+	const handle = (e) => setTaskColor(e.target.value);
+	let navigator = useNavigate();
 
-            <div className='input-line'>
-                <label className='input-name taskname-name'>Name</label>
-            </div>
-            <div className='input-line'>
-                <input 
-                    type='text' 
-                    value={taskName}
-                    onChange={(e) => {setTaskName(e.target.value)}}
-                ></input>
-            </div>
+	const priority = ["Cassual", "Nomal", "Crucial", "High Priority"];
 
-            <div className='input-line'>
-                <label className='input-name taskname-name'>Description</label>
-            </div>
-            <div className='input-line'>
-                <textarea 
-                    value={taskDesc} 
-                    onChange={(e) => {setTaskDesc(e.target.value)}}>
+	function submitform() {
+		const task = new Task(
+			taskName,
+			taskDesc,
+			taskDuration,
+			taskDeadline,
+			taskPriority,
+			taskLocation,
+			taskColor
+		);
 
-                </textarea>
-            </div>
+		console.log(task);
 
-            <div className='input-line'>
-                <label className='input-name taskstart-name timeset-name'>Duration</label>
-            </div>
-            <div className='input-line'>
-                <input 
-                    type='number' 
-                    value={taskDuration} onChange={(e) => {setTaskDuration(e.target.value)}}
-                />
-            </div>
+		let err = validateTaskForm({
+			taskName,
+			taskDesc,
+			taskDuration,
+			taskDeadline,
+			taskPriority,
+			taskLocation,
+			taskColor,
+		});
 
-            <div className='input-line'>
-                <label className='input-name taskstart-name timeset-name'>Location</label>
-            </div>
-            <div className='input-line'>
-                <input 
-                    type='text' 
-                    value={taskLocation} onChange={(e) => {setTaskLocation(e.target.value)}}
-                />
-            </div>
+		if (err) {
+			setInputErrs(err);
+			console.log(err);
+			return;
+		}
 
-            <div className='input-line'>
-                <label className='input-name taskstart-name timeset-name'>Deadline</label>
-            </div>
-            <div className='input-line'>
-                <input 
-                    type='datetime-local' 
-                    value={taskDeadline} onChange={(e) => {setTaskDeadline(e.target.value)}}
-                />
-            </div>
+		if (object) {
+			// remove the object to be added later its modifed in the edit mode
+			taskMan.removeTask(object);
+		}
 
-            <div className='input-line'>
-                <label className='input-name taskstart-name timeset-name'>Priority</label>
-            </div>
-            <div className='input-line'>
-                <select value={taskPriority} onChange={(e) => setTaskPriority(e.target.value)}>
-                    <option value={4}>High Priority</option>
-                    <option value={3}>Crucial</option>
-                    <option value={2}>Normal</option>
-                    <option value={1}>Cassual</option>
-                </select>
-            </div>
+		taskMan.addTask(task);
 
-            <div className='input-line'>
-                <label >Color</label>
-            </div>
+		navigator("/", { replace: true });
+	}
 
-            <div className='input-line'>
-                <label className="hidden">Yellow</label>
-                <input type="radio" name="color" id="yellow" value="yellow" 
-                    checked={taskColor == 'yellow'}
-                    onChange={handle}/>
+	const colors = ["blue", "red", "green", "yellow"];
 
-                <label className="hidden">Green</label>
-                <input type="radio" name="color" id="green" value="green"
-                    checked={taskColor == 'green'}
-                    onChange={handle} />
+	return (
+		<form id="routines-form" className="mt-1">
+			<InputLine
+				label="Name"
+				propName="taskName"
+				type="text"
+				value={taskName}
+				setter={setTaskName}
+				error={inputErrs}
+			/>
 
-                <label className="hidden">Red</label>
-                <input type="radio" name="color" id="red" value="red" 
-                    checked={taskColor == 'red'}
-                    onChange={handle}/>
+			<InputLine
+				label="Description"
+				propName="taskDesc"
+				value={taskDesc}
+				largeText={true}
+				setter={setTaskDesc}
+				error={inputErrs}
+			/>
 
-                <label className="hidden">Blue</label>
-                <input type="radio" name="color" id="blue" value="blue" 
-                    checked={taskColor == 'blue'}
-                    onChange={handle}/>
-            </div>
+			<InputLine
+				label="Duration"
+				propName="taskDuration"
+				type="number"
+				value={taskDuration}
+				setter={setTaskDuration}
+				error={inputErrs}
+			/>
 
-            <div className='input-line'>
-                <button 
-                    type="button" 
-                    className='mt-4 btn btn__img add-routine'
-                    onClick={() => submitform()}>
-                    {title}
-                </button>
-            </div>
-        </form>
-    )
+			<InputLine
+				label="Location"
+				propName="taskLocation"
+				type="text"
+				value={taskLocation}
+				setter={setTaskLocation}
+				error={inputErrs}
+			/>
+
+			<InputLine
+				label="Deadline"
+				propName="taskDeadline"
+				type="datetime-local"
+				value={taskDeadline}
+				setter={setTaskDeadline}
+				error={inputErrs}
+			/>
+
+			<SelectInputs
+				value={taskPriority}
+				options={priority}
+				propName={"taskPriority"}
+				setter={setTaskPriority}
+				error={inputErrs}
+				multiple={false}
+				label="Priority"
+			/>
+
+			<div className="input-line">
+				<label>Color</label>
+			</div>
+
+			<div className="input-line">
+				{colors.map((c, i) => (
+					<SimpleColorRadio
+						handle={handle}
+						taskColor={taskColor}
+						value={c}
+						key={i}
+					/>
+				))}
+			</div>
+
+			<div className="input-line">
+				<button
+					type="button"
+					className="mt-4 btn btn__img add-routine"
+					onClick={() => submitform()}
+				>
+					{title}
+				</button>
+			</div>
+		</form>
+	);
 }
