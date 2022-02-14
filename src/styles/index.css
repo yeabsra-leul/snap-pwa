@@ -16,3 +16,38 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.routine--line{
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+  padding: 0.85em 0;
+  font-size: 1rem;
+}
+
+.routine--line + .routine--line{
+  border-top: 1px solid #dbdbdb;
+}
+
+.day-tag{
+  display: inline-block;
+  border: 1px solid #795548;
+  padding: 0.25em 0.35em;
+  font-size: 0.888rem;
+  border-radius: 3px;
+  color: #795548;
+}
+
+.day-tag + .day-tag {
+  margin-left: 1em;
+}
+
+.routine--name{
+  margin-bottom: 0.65em;
+  font-weight: 300;
+}
+
+.week-day{
+  color: #f44336;
+  border-color: #f44336;
+}

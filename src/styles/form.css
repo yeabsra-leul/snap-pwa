@@ -15,6 +15,9 @@
     border: 1px solid #c0c0c0;
 }
 
+.input-line{
+    margin: 0 0.3em;
+}
 .input-line input[type='radio']{
     margin-right: 2.5rem;
 }
