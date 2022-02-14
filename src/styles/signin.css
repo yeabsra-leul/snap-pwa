@@ -1,0 +1,160 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body{
+	height: 100vh;
+	width: 100%;
+}
+
+.background{
+	background: linear-gradient(#037C8F,#003463);
+	height: 65vh;
+	width: 100%;
+	position: relative;
+	animation-name: slide-up-background;
+	animation-duration: 3s;
+}
+.foreground{
+	background: white;
+	height: 35vh;
+	z-index: 111;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+}
+a.signin-button{
+    height: 76px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 15px;
+    background: #1E7F94;
+    font-weight: 900;
+    font-size: larger;
+}
+a.signin-button:hover{
+	background: #003463;
+}
+
+.logo-text{
+	position: absolute;
+    right: 42%;
+    top: 60%;
+    color: white;
+    font-weight: 900;
+    font-size: 3em;
+    animation-name: fade-in;
+	animation-duration: 4s;
+	/*animation-delay: 3s;*/
+}
+
+.logo{
+	position: absolute;
+	right: 36%;
+	top: 50%;
+	height: 25%;
+	animation-name: fade-in;
+	animation-duration: 3s;
+	/*animation-delay: 3s;*/
+}
+
+.logo-container {
+    display: flex;
+    justify-content: space-around;
+    min-height: 100px;
+}
+
+.custom-shape-divider-bottom-1644866919 {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    animation-name: slide-up-wave;
+    animation-duration: .3s;
+}
+
+.custom-shape-divider-bottom-1644866919 svg {
+    position: relative;
+    display: block;
+    width: calc(151% + 1.3px);
+    height: 196px;
+}
+
+.custom-shape-divider-bottom-1644866919 .shape-fill {
+    fill: #FFFFFF;
+}
+
+
+
+/*animations*/
+@keyframes slide-up-background{
+	0%{
+		height: 100vh;
+	}
+
+	100%{
+		height: 65vh;
+	}
+}
+
+@keyframes slide-up-wave{
+	0%{
+		bottom: -12%;
+	}
+
+	100%{
+		bottom: 0%;
+	}
+}
+
+@keyframes fade-in{
+	0%{
+		opacity: 0;
+	}
+	80%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+
+
+/*Responsive*/
+@media only screen and (max-width: 480px){
+
+	.custom-shape-divider-bottom-1644866919 svg {
+    position: relative;
+    display: block;
+    width: calc(151% + 1.3px);
+    height: 80px;
+    }
+
+    a.signin-button{
+    	height: 60px;
+    	width: 170px;
+    }
+    a.signin-button:hover{
+    	background: #003463;
+    }
+    .logo{
+    	height: 20%;
+    }
+    .logo-text{
+    	top: 57%;
+    	right: 19%;
+    	font-size: 2.5em;
+    }
+}
