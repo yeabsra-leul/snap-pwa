@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithRedirect, signInWithPopup, signOut } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithRedirect, signInWithPopup, signInWithCredential, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDmeTpukDdm8xhLBS-dWcAFp4IF4MuXAAo",
@@ -16,7 +16,7 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = () => {
-  signInWithPopup(auth, provider)    // TODO: DECIDE BETWEEN SIGN IN WITH POPUP OR REDIRECT
+  signInWithCredential(auth, provider)    // TODO: DECIDE BETWEEN SIGN IN WITH POPUP OR REDIRECT
     .then((result) => {
 
       let userInfo = {
