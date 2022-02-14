@@ -1,76 +1,74 @@
-import search from "../images/search.svg"
+import search from "../images/search.svg";
 import add from "../images/add.svg";
 import exit from "../images/exit.svg";
 import humburger from "../images/humburger.svg";
-import ImageButton from "./Buttons"
+import ImageButton from "./Buttons";
 import { Link } from "react-router-dom";
-import { days , months} from "./utils";
+import { days, months } from "./utils";
 
-export default function Nav({title, showInput, setShowInput, utilities, children}) {
+export default function Nav({
+	title,
+	showInput,
+	setShowInput,
+	utilities,
+	children,
+	isOpened,
+	setIsOpened
+}) {
+	const btnIcon = showInput ? search : exit;
 
-    const btnIcon = showInput ? search : exit;
+	return (
+		<div className="nav flex jc-sb">
+			<div className="left-menu">
+				<ImageButton
+					image={humburger}
+					onClick={() => {setIsOpened(!isOpened)}}
+					alt={"menu"}
+					cls={"search-icon"}
+				/>
 
-    return (
-        <div className="nav flex jc-sb">
+				<span>{title}</span>
+			</div>
 
-            <div className="left-menu">
-                <ImageButton
-                    image={humburger}
-                    alt={"menu"}
-                    cls={"search-icon"}
-                />
+			{utilities && !showInput && children}
 
-                <span>
-                    {title}
-                </span>
-            </div>
-
-            {utilities && !showInput && children}
-
-            {utilities && 
-                <ImageButton
-                    image={btnIcon}
-                    onClick={() => setShowInput(!showInput)}
-                    alt={"Seach for a task"}
-                    cls={"search or close search"}
-                />
-            }
-
-        </div>
-    )
+			{utilities && (
+				<ImageButton
+					image={btnIcon}
+					onClick={() => setShowInput(!showInput)}
+					alt={"Seach for a task"}
+					cls={"search or close search"}
+				/>
+			)}
+		</div>
+	);
 }
 
 export function UtilityNav() {
-    const today = new Date()
-    
-    return (
-        <div className="flex jc-sb">
-            <section className="date-shower iflex g-1">
-                <aside className="a-center h-3 ">
-                    {today.getDate()}
-                </aside>
+	const today = new Date();
 
-                <section className="flex cur-date">
-                    <span className="cur-date-desc">
-                        {days[today.getDay()]}
-                    </span>
+	return (
+		<div className="flex jc-sb">
+			<section className="date-shower iflex g-1">
+				<aside className="a-center h-3 ">{today.getDate()}</aside>
 
-                    <span className="cur-date-desc">
-                        {months[today.getMonth()]} {today.getFullYear()}
-                    </span>
-                </section>
+				<section className="flex cur-date">
+					<span className="cur-date-desc">
+						{days[today.getDay()]}
+					</span>
 
-            </section>
+					<span className="cur-date-desc">
+						{months[today.getMonth()]} {today.getFullYear()}
+					</span>
+				</section>
+			</section>
 
-            <section className="wrapper flex">
-
-            <Link className="btn btn__img add-task" to="/task/new">
-                <img src={add} alt="Add Task" /> 
-                ADD
-            </Link>
-               
-            </section>
-
-        </div>
-    )
+			<section className="wrapper flex">
+				<Link className="btn btn__img add-task" to="/task/new">
+					<img src={add} alt="Add Task" />
+					ADD
+				</Link>
+			</section>
+		</div>
+	);
 }

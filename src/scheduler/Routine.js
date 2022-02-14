@@ -1,4 +1,5 @@
 import { days, createEnumProperty } from "./utils";
+import { v4 as uuidv4} from "uuid"; 
 
 // enum object to describe daily or weekly repeation
 export const Repeat = Object.create(null);
@@ -9,8 +10,9 @@ for (let key in days) {
 }
 
 export class Routine {
-	constructor(routineId, startTime, endTime, name, repeat) {
-		this.id = routineId;
+	constructor(startTime, endTime, name, repeat) {
+		this.id = uuidv4();
+		
 		this.start = startTime;
 		this.end = endTime;
 		this.name = name;

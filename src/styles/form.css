@@ -3,10 +3,11 @@
 } 
 
 .input-line + .input-line{
-    margin-top: 1.5em;
+    margin-top: 1em;
 }
 
 .input-line input[type="text"],
+.input-line input[type="time"],
 .input-line input[type="number"],
 .input-line input[type="datetime-local"], textarea, select{
     width: 100%;
@@ -92,4 +93,17 @@ input[type='radio']:checked:after {
 
 .blue .task__card {
     background-color: #03a9f4;
+}
+
+.cb-label{
+    text-transform: lowercase;
+    margin-right: 0.7em;
+}
+
+.checkbox-group + .checkbox-group{
+    margin-left: 0.25em;
+}
+
+.checkbox-group{
+    display: inline-block;
 }

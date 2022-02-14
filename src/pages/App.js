@@ -5,7 +5,7 @@ import { SignIn } from './SignIn';
 import Schedules from './Schedules';
 import Settings from './Settings';
 import Profile from './Profile';
-import TaskPage from './Task';
+import TaskPage from './TaskPage';
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false)
