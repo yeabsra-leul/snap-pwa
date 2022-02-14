@@ -1,60 +1,59 @@
 import { taskMan } from "./TaskManager";
 import { Interval } from "./Routine";
 
-class Schedule{
-    constructor(task, interval, date){
-        this.task = task
-        this.time = interval
-        this.date = date
-    }
+class Schedule {
+	constructor(task, interval, date) {
+		this.task = task;
+		this.time = interval;
+		this.date = date;
+	}
 }
 
-class Scheduler{
+class Scheduler {
+	constructor() {
+		this.schedules = [];
+	}
 
-    constructor(){
-        this.schedules = []
-    }
+	createSchedule() {
+		while (!taskMan.tasks.isEmpty()) {
+			let task = taskMan.tasks.dequeue();
+			this.assignTask(task);
+		}
+	}
 
-    createSchedule() {
-        while(!taskMan.tasks.isEmpty()){
-            let task = taskMan.tasks.dequeue();
-            this.assignTask(task);
-        }
-    }
+	assignTask(task) {
+		for (let day of taskMan.days) {
+			for (let interval of day.intervals) {
+				const length = Number(task.duration);
 
-    assignTask(task){
-        for(let day of taskMan.days){
-            
-            
-            for(let interval of day.intervals) {
-                const length = Number(task.duration);
+				if (interval.length >= length) {
+					// console.log("Got a space")
+					// break;
+					let time = new Interval(
+						interval.start,
+						interval.start + length
+					);
 
-                if(interval.length >= length){
-                    // console.log("Got a space")
-                    // break;
-                    let time = new Interval(interval.start, interval.start + length)
-                    
-                    day.removeInterval(time)
+					day.removeInterval(time);
 
-                    this.schedules.push(new Schedule(task, time, day.date))
+					this.schedules.push(new Schedule(task, time, day.date));
 
-                    return 
+					return;
 
-                    // return new Schedule(task, interval)
-                }
-            };
-        }
-    }
+					// return new Schedule(task, interval)
+				}
+			}
+		}
+	}
 
-    tasksAvailable(){
-        let tasks = taskMan.tasks
+	tasksAvailable() {
+		let tasks = taskMan.tasks;
 
-        return !tasks.isEmpty()
-    }
-
+		return !tasks.isEmpty();
+	}
 }
 
-export const scheduler = new Scheduler()
+export const scheduler = new Scheduler();
 
 // scheduler.createSchedule()
 
