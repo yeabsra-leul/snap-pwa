@@ -41,20 +41,21 @@ export function Routines () {
                 <label className='header'>Routines</label>
             </div>
 
-            <div className='setting-line'>
+            <div className='setting-line name-line'>
                 <label className='setting-name taskname-name'>Name</label>
                 <input type='text' className='name-input' id="routine-name"></input>
             </div>
 
-            <div className='setting-line'>
+            <div className='setting-line start-time-line'>
                 <label className='setting-name taskstart-name timeset-name'>Start Time</label>
-                <input type='time' className='time-input' id="start-time"></input>
+                <input type='time' className='time-input start-time' id="start-time"></input>
             </div>
 
-            <div className='setting-line'>
+            <div className='setting-line end-time-line'>
                 <label className='setting-name taskend-name timeset-name'>End Time</label>
-                <input type='time' className='time-input' id="end-time"></input>
+                <input type='time' className='time-input end-time' id="end-time"></input>
             </div>
+
             <div className='button-container'>
                 <button type="button" className='btn btn__img add-routine' onClick={saveRoutine}>Add Routine</button>
             </div>

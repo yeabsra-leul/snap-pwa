@@ -22,7 +22,7 @@
 }
 
 .name-input {
-    padding: 5px;
+    padding: 15px;
     margin-left: 1em;
     width: 60vw;
     height: 1.5em;
@@ -38,6 +38,10 @@
     margin-right: .5em;
 }
 
+.end-time {
+    margin-left: 14px;
+}
+
 .button-container {
     display: flex;
     justify-content: end;
@@ -47,4 +51,5 @@
     background: rgba(232, 237, 223);;
     border-radius: 6px;
     padding: 0.6em 0.9em;
+    margin-top: 5px;
 }
