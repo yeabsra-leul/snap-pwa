@@ -38,13 +38,13 @@ function Routine({ routine, setRoutines }) {
 			<section>
 				<div className="routine--name">{routine.name}</div>
 				<div>
-					{routine.repeat.map((r) => {
+					{routine.repeat.map((r, i) => {
 						const className = classNames({
 							"day-tag": true,
 							"week-day": r == "SUN" || r == "SAT",
 						});
 
-						return <span className={className}>{r}</span>;
+						return <span className={className} key={i}>{r}</span>;
 					})}
 				</div>
 			</section>

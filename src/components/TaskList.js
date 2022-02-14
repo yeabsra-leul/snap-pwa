@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { reload } from "./utils";
 import { useNavigate } from "react-router-dom";
 import { TaskItem } from "./TaskItem";
+import { routineManager } from "../scheduler/RoutineManager";
 
 export default function TaskList({ selected, searchTerm, showInput }) {
 	const [schedules, setSchedules] = useState(scheduler.schedules);

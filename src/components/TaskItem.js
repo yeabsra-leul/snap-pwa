@@ -11,13 +11,61 @@ import { scheduler } from "../scheduler/Scheduler";
 import { useState } from "react";
 import { reload } from "./utils";
 import ClickAwayListener from "react-click-away-listener";
+import { routineManager } from "../scheduler/RoutineManager";
 import { taskMan } from "../scheduler/TaskManager";
 
-function formatTime(minutes) {
-    const hour = Math.floor(Number(minutes) / 60)
-    const minute = Number(minutes) % 60
 
-    return `${hour}:${minute}`;
+function formatTime(minutes) {
+	let hour = Math.floor(Number(minutes) / 60);
+	const minute = Number(minutes) % 60;
+
+	const AMPM = (hour >= 12 && hour <=23) ? "PM" : "AM";
+
+	if(AMPM == "PM" && hour != 12){
+		hour -= 12;
+	}
+
+	if(hour == 0) hour += 12
+
+	return `${hour.toString().padStart(2,0)}:${minute.toString().padStart(2,0)} ${AMPM}`;
+}
+
+async function createNotification(schedule) {
+	if (!"Notification" in window) {
+		// console.log("Called")
+		// console.log(routineManager._routines);
+		// console.log(taskMan.days)
+		// console.log(scheduler.schedules)
+		return;
+	}
+
+	if (Notification.permission !== "denied") {
+		await Notification.requestPermission();
+	}
+
+	let timeStamp = schedule.date;
+
+	if(typeof schedule.date == "string"){
+		timeStamp = new Date(schedule.date) 
+	}
+
+	console.log(timeStamp);
+
+	const hour = Math.floor(schedule.time.start  /60)
+	const minute = schedule.time.start % 60;
+
+	timeStamp.setHours(hour, minute, 0);
+
+	timeStamp = timeStamp.getTime() - Date.now()
+
+	console.log(timeStamp);
+	
+	setTimeout(() => {
+		new Notification(`Hey! its time to ${schedule.task.name}`, {
+			body: schedule.task.desc,
+			timestamp: timeStamp,
+		});
+	}, timeStamp);
 }
 
 export function TaskItem({ schedule, task, refreshSchedules, navigator }) {
@@ -53,8 +101,12 @@ export function TaskItem({ schedule, task, refreshSchedules, navigator }) {
 	return (
 		<div className={cls}>
 			<div className="tasks__time-col">
-				<span className="time start">{formatTime(schedule.time.start)}</span>
-				<span className="time end">{formatTime(schedule.time.end)}</span>
+				<span className="time start">
+					{formatTime(schedule.time.start)}
+				</span>
+				<span className="time end">
+					{formatTime(schedule.time.end)}
+				</span>
 			</div>
 
 			<div className="tasks__task-col task__card">
@@ -80,7 +132,10 @@ export function TaskItem({ schedule, task, refreshSchedules, navigator }) {
 				>
 					<div className={"popup"}>
 						<li>
-							<ImageButton image={pin} onClick={() => {}}>
+							<ImageButton
+								image={pin}
+								onClick={() => createNotification(schedule)}
+							>
 								Pin
 							</ImageButton>
 						</li>

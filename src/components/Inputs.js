@@ -1,4 +1,9 @@
-function InputLine({ label, type, value, setter }) {
+import classNames from "classnames";
+
+function InputLine({ label, type, value, setter, error, propName, largeText }) {
+	let errMsg = error[propName] || "";
+	let isInvalidCls = classNames({ "is-invalid": errMsg != "" });
+
 	return (
 		<>
 			<InputWrapper>
@@ -6,11 +11,24 @@ function InputLine({ label, type, value, setter }) {
 			</InputWrapper>
 
 			<InputWrapper>
-				<input
-					type={type}
-					value={value}
-					onChange={(e) => setter(e.target.value)}
-				></input>
+				{!largeText && (
+					<input
+						className={isInvalidCls}
+						type={type}
+						value={value}
+						onChange={(e) => setter(e.target.value)}
+					></input>
+				)}
+
+				{largeText && (
+					<textarea
+						className={isInvalidCls}
+						value={value}
+						onChange={(e) => setter(e.target.value)}
+					></textarea>
+				)}
+
+				{errMsg != "" && <span className="error-msg">{errMsg}</span>}
 			</InputWrapper>
 		</>
 	);
@@ -20,16 +38,32 @@ export function InputWrapper({ children }) {
 	return <div className="input-line">{children}</div>;
 }
 
-export function CheckBoxInputs({ label, value, options, setter}) {
+export function SelectInputs({
+	label,
+	value,
+	options,
+	setter,
+	error,
+	propName,
+	multiple,
+}) {
+	let errMsg = error[propName] || "";
+	let isInvalidCls = classNames({ "is-invalid": errMsg != "" });
 
-    function handleSelect(newValue){
-        console.log(value)
-        
-        value.push(newValue);
-        
-        let uniques = new Set(value);
-        setter(Array.from(uniques));
-    }
+	function handleSelect(newValue) {
+		if (multiple) {
+			value.push(newValue);
+
+			let uniques = new Set(value);
+			setter(Array.from(uniques));
+
+			return;
+		}
+
+		// if multiple is explicityl set to false
+
+		setter(newValue);
+	}
 
 	return (
 		<>
@@ -38,14 +72,41 @@ export function CheckBoxInputs({ label, value, options, setter}) {
 			</InputWrapper>
 
 			<InputWrapper>
-                <select value={value} multiple={true} onChange={(e) => handleSelect(e.target.value)}>
+				<select
+					value={value}
+					multiple={multiple ?? true}
+					className={isInvalidCls}
+					onChange={(e) => handleSelect(e.target.value)}
+				>
+					{options.map((val, i) => (
+						<option value={val.toUpperCase()} key={i}>
+							{val}
+						</option>
+					))}
+				</select>
 
-				    {options.map((val, i) => <option value={val.toUpperCase()} key={i}>{val}</option>)}
-
-                </select>
+				{errMsg != "" && <span className="error-msg">{errMsg}</span>}
 			</InputWrapper>
 		</>
 	);
 }
 
+export function SimpleColorRadio({value, taskColor, handle}) {
+	return (
+		<>
+			<label className="hidden" htmlFor={value}>
+				Green
+			</label>
+			
+			<input
+				type="radio"
+				name="color"
+				id={value}
+				value={value}
+				checked={taskColor == value}
+				onChange={handle}
+			/>
+		</>
+	);
+}
 export default InputLine;

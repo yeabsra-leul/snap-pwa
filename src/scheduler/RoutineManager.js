@@ -3,18 +3,27 @@ import { Repeat, Interval } from "./Routine";
 
 class RoutineManager {
 	constructor() {
+		this.init();
+	}
+
+	init() {
 		this._routines = repository.getRoutines();
 	}
 
 	allocateRoutine = function (day) {
+		const inOnRepeat = (day, routine) => {
+			return routine.repeat.some((repeat) => Repeat[repeat] == day);
+		};
+
 		for (let routine of this._routines) {
-			if (
-				day.date.getDay() == routine.repeat ||
-				routine.repeat == Repeat.AllDAY
-			) {
-				// remove a specified time interval from the day
+			if (inOnRepeat(day.date.getDay(), routine)) {
+				// remove a specified time interval from the 
+				console.log("START _XXXXXXXX");
+				console.log(day);
 				const booked = new Interval(routine.start, routine.end);
 				day.removeInterval(booked);
+				console.log(day);
+				console.log("END _XXXXXXXX");
 			}
 		}
 	};
@@ -22,7 +31,6 @@ class RoutineManager {
 	addRoutine = function (routine) {
 		this._routines.push(routine);
 	};
-
 
 	removeRoutine = function (routine) {
 		this._routines = this._routines.filter((item) => routine.id != item.id);

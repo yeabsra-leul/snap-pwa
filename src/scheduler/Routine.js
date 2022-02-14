@@ -69,6 +69,24 @@ export class TimeInterval {
 				this.intervals.splice(index, 1, ...unBookedIntervals);
 
 				break;
+			}else if(interval.start > newInterval.start && interval.end > newInterval.end){
+
+				const unBookedIntervals = [];
+
+				unBookedIntervals.push(
+					new Interval(newInterval.end, interval.end)
+				);
+
+				this.intervals.splice(index, 1, ...unBookedIntervals);
+
+			}else if(interval.start < newInterval.start && interval.end < newInterval.end){
+				const unBookedIntervals = [];
+
+				unBookedIntervals.push(
+					new Interval(interval.start, interval.end)
+				);
+
+				this.intervals.splice(index, 1, ...unBookedIntervals);
 			}
 		}
 	}

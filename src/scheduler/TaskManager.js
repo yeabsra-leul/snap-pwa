@@ -37,7 +37,7 @@ class TaskManager {
 
 	initDays() {
 		if(!this.tasks.isEmpty()){
-			let now = new Date();
+			let now =  new Date();//
 
 			let lastDay = this.tasks.farthestDeadline();
 
@@ -49,7 +49,7 @@ class TaskManager {
 
 			daysInBetWeen = Math.ceil(daysInBetWeen / DAYINMILL);
 
-			this.days.push(new TimeInterval(now));
+			this.days.push(new TimeInterval(new Date(Date.now() + 15 * 60000)));
 
 			if (daysInBetWeen >= 2) {
 				for (let i = 1; i < daysInBetWeen - 1; i++) {

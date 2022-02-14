@@ -23,6 +23,7 @@ class Scheduler {
 
 	assignTask(task) {
 		for (let day of taskMan.days) {
+			
 			for (let interval of day.intervals) {
 				const length = Number(task.duration);
 
