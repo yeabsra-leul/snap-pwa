@@ -28,6 +28,9 @@ body{
 	position: relative;
 
 }
+button{
+	border:none;
+	outline:none;
 a.signin-button{
     height: 76px;
     width: 200px;
