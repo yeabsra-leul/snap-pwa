@@ -28,7 +28,7 @@ body{
 	position: relative;
 
 }
-a{
+a.signin-button{
     height: 76px;
     width: 200px;
     display: flex;
@@ -40,7 +40,7 @@ a{
     font-weight: 900;
     font-size: larger;
 }
-a:hover{
+a.signin-button:hover{
 	background: #003463;
 }
 
@@ -142,11 +142,11 @@ a:hover{
     height: 80px;
     }
 
-    a{
+    a.signin-button{
     	height: 60px;
     	width: 170px;
     }
-    a:hover{
+    a.signin-button:hover{
     	background: #003463;
     }
     .logo{

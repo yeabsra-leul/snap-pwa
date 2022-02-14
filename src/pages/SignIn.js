@@ -30,7 +30,7 @@ export const SignIn = () => {
 
             <div className="foreground">
                 <button className="google-btn sign-in-btn" onClick={signInWithGoogle}>
-                    <a>Sign In</a>
+                    <a className='signin-button'>Sign In</a>
                 </button>
             </div>
         </>
