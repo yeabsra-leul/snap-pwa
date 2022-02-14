@@ -1,6 +1,6 @@
 import "../styles/form.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
 import Nav from "../components/Nav";
@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 
 function TaskPage() {
 	const { id } = useParams();
+	const [isOpened, setIsOpened] = useState(false);
+
 	const currentTask = taskMan.taskList.find((t) => t.id === id);
 	const title = currentTask ? "Edit Task" : "Add Task";
 
@@ -26,10 +28,17 @@ function TaskPage() {
 				<Sidebar
 					pageWrapId={"page-wrap"}
 					outerContainerId={"outer-container"}
+					isOpened={isOpened}
+					setIsOpened={setIsOpened}
 				/>
 
 				<div className="container">
-					<Nav title={title} utilities={false} />
+					<Nav
+						title={title}
+						utilities={false}
+						isOpened={isOpened}
+						setIsOpened={setIsOpened}
+					/>
 				</div>
 			</header>
 

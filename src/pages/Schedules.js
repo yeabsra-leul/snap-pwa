@@ -12,6 +12,7 @@ import { taskMan } from "../scheduler/TaskManager";
 function Schedules() {
 	const [selected, setSelected] = useState(new Date().getDate());
 	const [showInput, setShowInput] = useState(true);
+	const [isOpened, setIsOpened] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
@@ -25,12 +26,16 @@ function Schedules() {
 				<Sidebar
 					pageWrapId={"page-wrap"}
 					outerContainerId={"outer-container"}
+					isOpened={isOpened}
+					setIsOpened={setIsOpened}
 				/>
 				<div className="container">
 					<Nav
 						utilities={true}
 						showInput={showInput}
 						setShowInput={setShowInput}
+						isOpened={isOpened}
+						setIsOpened={setIsOpened}
 					>
 						<SearchInput
 							searchTerm={searchTerm}
