@@ -121,6 +121,7 @@ function RoutineForm() {
 				propName={"repeat"}
 				setter={setReapt}
 				error={inputErrs}
+				multiple={true}
 				label="Repeats"
 			/>
 

@@ -51,7 +51,7 @@ export function SelectInputs({
 	let isInvalidCls = classNames({ "is-invalid": errMsg != "" });
 
 	function handleSelect(newValue) {
-		if (typeof multiple == "undefine" || multiple == true) {
+		if (multiple) {
 			value.push(newValue);
 
 			let uniques = new Set(value);

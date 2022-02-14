@@ -15,5 +15,4 @@ export const days = {
     FRI: 5,
     SAT: 6,
     SUN: 0,
-    ALLDAY: 10
 }

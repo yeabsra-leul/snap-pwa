@@ -1,7 +1,10 @@
 import { taskMan } from "../scheduler/TaskManager";
 import { scheduler } from "../scheduler/Scheduler";
+import { routineManager } from "../scheduler/RoutineManager";
 
 export function reload() {
+    routineManager.init()
+    
     taskMan.init();
     taskMan.initDays();
     taskMan.allotRoutines();
